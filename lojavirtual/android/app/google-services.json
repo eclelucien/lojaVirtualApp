@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "509873912796",
+    "project_id": "loja-virtual-c6698",
+    "storage_bucket": "loja-virtual-c6698.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509873912796:android:7723dfb6ccc46a570aed19",
+        "android_client_info": {
+          "package_name": "br.com.eagle.lojavirtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509873912796-hruf334c340e0m69cfsme2g7b4e0g7vt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp0txhJ_bjK-anGx1ajDhB_YKqQR7WEt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509873912796-hruf334c340e0m69cfsme2g7b4e0g7vt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
