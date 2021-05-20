@@ -1,9 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/base/base_screen.dart';
+import 'package:lojavirtual/screens/sign_up/signup_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/src/widgets/binding.dart';
 
@@ -19,9 +20,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => UserManager(),
-      child: MaterialApp(
+    return ChangeNotifierProvider(
+        create: (_) => UserManager(),
+        child: MaterialApp(
           title: 'Loja virtual',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
@@ -32,23 +33,16 @@ class MyApp extends StatelessWidget {
             ),
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: BaseScreen()),
-    );
+          initialRoute: '/base',
+          onGenerateRoute: (settings) {
+            switch (settings.name) {
+              case '/signup':
+                return MaterialPageRoute(builder: (_) => SignUpScreen());
+              case '/base':
+              default:
+                return MaterialPageRoute(builder: (_) => BaseScreen());
+            }
+          },
+        ));
   }
 }
-
-// class ApplicationState extends ChangeNotifier {
-//   ApplicationState() {
-//     init();
-//   }
-//   Future<void> init() async {
-//     await Firebase.initializeApp();
-//     FirebaseApp defaultApp = await Firebase.initializeApp();
-
-//     FirebaseAuth.instance.userChanges().listen((user)) {
-//         if (user != null) {
-            
-//         }
-//     }
-//   }
-// }
