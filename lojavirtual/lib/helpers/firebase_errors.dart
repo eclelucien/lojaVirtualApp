@@ -11,7 +11,7 @@ String getErrorString(String code) {
     case 'wrong-password':
       return 'Sua senha está incorreta. #3';
 
-    case 'ERROR_USER_NOT_FOUND':
+    case 'user-not-found':
       return 'Não há usuário com este e-mail.';
     case 'ERROR_USER_DISABLED':
       return 'Este usuário foi desabilitado.';

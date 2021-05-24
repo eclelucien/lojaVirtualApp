@@ -76,28 +76,27 @@ class Login extends StatelessWidget {
                                       AlwaysStoppedAnimation(Colors.white),
                                 )
                               : Text('Entar'),
-                          onPressed: userManager.loading
-                              ? null
-                              : () {
-                                  if (formKey.currentState.validate()) {
-                                    userManager.signIn(
-                                        user: Users(
-                                          email: emailController.text,
-                                          password: passwordController.text,
-                                        ),
-                                        onFail: (e) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                            content:
-                                                Text("Falha ao entrar: $e"),
-                                            backgroundColor: Colors.red,
-                                          ));
-                                        },
-                                        onSuccess: () {
-                                          //TODO FACHAR TELA DE LOGIN
-                                        });
-                                  }
-                                },
+                          onPressed: // userManager.loading
+                              //     ? null
+                              () {
+                            if (formKey.currentState.validate()) {
+                              userManager.signIn(
+                                  user: Users(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  ),
+                                  onFail: (e) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text("Falha ao entrar: $e"),
+                                      backgroundColor: Colors.red,
+                                    ));
+                                  },
+                                  onSuccess: () {
+                                    Navigator.of(context).pop();
+                                  });
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Color.fromARGB(255, 4, 125, 141),
                             textStyle: TextStyle(fontSize: 18),

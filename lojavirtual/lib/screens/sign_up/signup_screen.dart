@@ -105,8 +105,7 @@ class SignUpScreen extends StatelessWidget {
                                   ));
                                 },
                                 onSuccess: () {
-                                  debugPrint('Successo...');
-                                  //TODO: POP
+                                  Navigator.of(context).pop();
                                 },
                               );
                         }

@@ -19,20 +19,25 @@ class UserManager extends ChangeNotifier {
 
   bool _loading = false;
   bool get loading => _loading;
+  bool get IsLoggedIn => user != null;
 
   //Uma função para o sigin do cliente
   Future<void> signIn({Users user, Function onFail, Function onSuccess}) async {
     loading = true;
+
     try {
       final UserCredential result = await auth.signInWithEmailAndPassword(
           email: user.email, password: user.password);
 
       // this.user = result.user;
+      user.id = result.user.uid;
       await _loadCurrentUser(firebaseuser: result.user);
 
+      loading = false;
       onSuccess();
     } on FirebaseAuthException catch (e) {
       onFail(getErrorString(e.code));
+      print(e.code);
     }
     loading = false;
   }
@@ -49,6 +54,7 @@ class UserManager extends ChangeNotifier {
 
       await user.saveData();
 
+      loading = false;
       onSuccess();
     } on FirebaseAuthException catch (e) {
       onFail(getErrorString(e.code));
@@ -58,6 +64,12 @@ class UserManager extends ChangeNotifier {
 
   set loading(bool value) {
     _loading = value;
+    notifyListeners();
+  }
+
+  void signOut() {
+    auth.signOut();
+    user = null;
     notifyListeners();
   }
 

@@ -11,6 +11,7 @@ class CustomDrawerHeader extends StatelessWidget {
         child: Consumer<UserManager>(builder: (_, userManager, __) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Text(
                 'Loja do\nEcle',
@@ -21,7 +22,21 @@ class CustomDrawerHeader extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              )
+              ),
+              GestureDetector(
+                  onTap: () {
+                    if (userManager.IsLoggedIn) {
+                      userManager.signOut();
+                    } else {
+                      Navigator.of(context).pushNamed('/login');
+                    }
+                  },
+                  child: Text(
+                      userManager.IsLoggedIn ? 'Sair' : 'Entre ou Cadastre-se',
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold))),
             ],
           );
         }));

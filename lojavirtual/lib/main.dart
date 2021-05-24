@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/base/base_screen.dart';
+import 'package:lojavirtual/screens/login/login_screen.dart';
 import 'package:lojavirtual/screens/sign_up/signup_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/src/widgets/binding.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding
+      .ensureInitialized(); //aqui estamos initialisando o nosso applicativo
   await Firebase.initializeApp();
 
   runApp(MyApp());
@@ -20,8 +22,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //aqui temos um stateless que normalmente devia ser a tela base no nosso app
     return ChangeNotifierProvider(
         create: (_) => UserManager(),
+        lazy: false,
         child: MaterialApp(
           title: 'Loja virtual',
           debugShowCheckedModeBanner: false,
@@ -38,6 +42,8 @@ class MyApp extends StatelessWidget {
             switch (settings.name) {
               case '/signup':
                 return MaterialPageRoute(builder: (_) => SignUpScreen());
+              case '/login':
+                return MaterialPageRoute(builder: (_) => Login());
               case '/base':
               default:
                 return MaterialPageRoute(builder: (_) => BaseScreen());
